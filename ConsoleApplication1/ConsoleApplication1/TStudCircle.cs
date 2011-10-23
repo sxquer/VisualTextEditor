@@ -1,7 +1,4 @@
-﻿// Тест для коммита номер 2
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,6 +13,7 @@ namespace ConsoleApplication1
         private double radius;
 
         private float xStep = 0.1f;
+        private float DeleteThisVAR = 24f;
 
         public float Step
         {
