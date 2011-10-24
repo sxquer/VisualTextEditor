@@ -51,6 +51,7 @@ namespace ConsoleApplication1
             sw.Close();
         }
 
+
         /// <summary>
         /// Заменяет один символ на другой на всей канве
         /// </summary>

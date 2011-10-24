@@ -96,5 +96,44 @@ namespace ConsoleApplication1
             currentY = -1;
             return false;
         }
+
+        public void DrawWo(TStudCanvas canvas, ushort x1, ushort y1, ushort x2, ushort y2)
+        {
+            DevTools.Normalize(ref x1, ref x2);
+            DevTools.Normalize(ref y1, ref y2);
+  
+            int dx = x2 - x1;
+            int dy = y2 - y1;
+            double gradient = dy / dx;
+  
+            // обработать начальную точку
+            double xend = DevTools.round(x1); 
+            double yend = y1 + gradient * (xend - x1);
+           
+            double xgap = 1 - DevTools.fpart(x1 + 0.5);
+            double xpxl1 = xend;  // будет использоваться в основном цикле
+            int ypxl1 = DevTools.ipart(yend);
+            DevTools.plot(canvas, Convert.ToInt32(xpxl1), Convert.ToInt32(ypxl1), Convert.ToDouble(1 - DevTools.fpart(yend) * xgap));
+           
+            DevTools.plot(canvas, Convert.ToInt32(xpxl1), Convert.ToInt32(ypxl1 + 1), Convert.ToDouble(DevTools.fpart(yend) * xgap));
+            double intery = yend + gradient; // первое y-пересечение для цикла
+        
+            // обработать конечную точку
+            xend = DevTools.round(x2);
+            yend = y2 + gradient * (xend - x2);
+            xgap = DevTools.fpart(x2 + 0.5);
+            double xpxl2 = xend;  // будет использоваться в основном цикле
+            double ypxl2 = DevTools.ipart(yend);
+            DevTools.plot(canvas, Convert.ToInt32(xpxl2), Convert.ToInt32(ypxl2), Convert.ToDouble(1 - DevTools.fpart(yend) * xgap));
+            DevTools.plot(canvas, Convert.ToInt32(xpxl2), Convert.ToInt32(ypxl2 + 1), Convert.ToDouble(DevTools.fpart(yend) * xgap));
+     
+           // основной цикл
+            for (double i = xpxl1 + 1; i < xpxl2; i++)
+		    {
+                DevTools.plot(canvas, (int)i, DevTools.ipart(intery), 1 - DevTools.fpart(intery));
+                DevTools.plot(canvas, (int)i, DevTools.ipart(intery) + 1, DevTools.fpart(intery));
+                intery = intery + gradient;
+		    }
+        }
     }
 }

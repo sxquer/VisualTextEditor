@@ -54,5 +54,54 @@ namespace ConsoleApplication1
             ushort height = Convert.ToUInt16(canvas.GetHeight() - 1);
             y = (y > height) ? height : y;
         }
+
+        #region Функции для алгоритма Wo
+
+        static public int ipart(double x)
+        {
+            return (int)x;
+        }
+
+        static public double fpart(double x)
+        {
+            return x - ipart(x);
+        }
+        
+        static public int round(double x)
+        {
+            return ipart(x + .5f);
+        }
+
+        static public void plot(TStudCanvas canvas, int x, int y, double brightness)
+        {
+            char backChar = '$';
+            switch (getLevel(brightness))
+            {
+                case 0:
+                    backChar = ',';
+                    break;
+                case 1:
+                    backChar = '/';
+                    break;
+                case 2:
+                    backChar = '%';
+                    break;
+                case 3:
+                    backChar = '$';
+                    break;
+            }
+
+            canvas.Field[x, y] = backChar;
+        }
+
+        static private int getLevel(double br)
+        {
+            if (br <= .25f) return 0;
+            if (br <= .5f) return 1;
+            if (br <= .75f) return 2;
+            return 3;
+        }
+
+        #endregion
     }
 }

@@ -7,6 +7,8 @@ namespace ConsoleApplication1
     abstract class AStudTools
     {
         private char backChar = '#';
+
+        
         /// <summary>
         /// Символ, которым рисуется фигура
         /// </summary>

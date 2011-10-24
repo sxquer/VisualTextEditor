@@ -135,6 +135,38 @@ namespace ConsoleApplication1
             Canvas.Draw("tests/5.txt");
 
             #endregion
+
+            #region Тест 6 (Линии)
+
+            Canvas = new TStudCanvas();
+            Line = new TStudLine(0.51f, false);
+            Line.Draw(Canvas, 10, 10, 50, 50);
+
+            Line.Draw(Canvas, 10, 50, 90, 70);
+
+            Canvas.Draw("tests/6.txt");
+
+            #endregion
+
+            #region Тест 7 (Круги Брезенхейма)
+
+            Canvas = new TStudCanvas();
+            Circle = new TStudCircle();
+            Circle.DrawBresenham(Canvas, 10, 30, 30);
+            //Circle.DrawBresenham(Canvas, 50, 80, 80);
+            Canvas.Draw("tests/7.txt");
+
+            #endregion
+
+            #region Тест 8 (Линия Ву)
+
+            Canvas = new TStudCanvas(emptyChar:' ');
+            Line = new TStudLine();
+            Line.DrawWo(Canvas, 10, 10, 50, 50);
+            Line.DrawWo(Canvas, 10, 50, 90, 70);
+            Canvas.Draw("tests/8.txt");
+
+            #endregion
         }
     }
 }

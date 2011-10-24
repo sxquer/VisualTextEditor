@@ -87,6 +87,47 @@ namespace ConsoleApplication1
             }
         }
 
+        //TODO: Обработать выход за границы канвы
+        /// <summary>
+        /// Рисует круг методом Брезенхейма
+        /// </summary>
+        /// <param name="canvas"></param>
+        /// <param name="radius"></param>
+        /// <param name="x0"></param>
+        /// <param name="y0"></param>
+        public void DrawBresenham(TStudCanvas canvas, int radius, int x0, int y0)
+        {
+            int x = 0;
+            int y = radius;
+            int delta = 2 - 2 * radius;
+            int error = 0;
+            while (y >= 0)
+            {
+                canvas.Field[x0 + x, y0 + y] = BackChar;
+                canvas.Field[x0 + x, y0 - y] = BackChar;
+                canvas.Field[x0 - x, y0 + y] = BackChar;
+                canvas.Field[x0 - x, y0 - y] = BackChar;
+                error = 2 * (delta + y) - 1;
+                if (delta < 0 && error <= 0)
+                {
+                    ++x;
+                    delta += 2 * x + 1;
+                    continue;
+                }
+                error = 2 * (delta - x) - 1;
+                if (delta > 0 && error > 0)
+                {
+                    --y;
+                    delta += 1 - 2 * y;
+                    continue;
+                }
+                ++x;
+                delta += 2 * (x - y);
+                --y;
+            }
+
+        }
+        
         /// <summary>
         /// Вычисляет y и проверяет, проходит ли точка по точности.
         /// </summary>
