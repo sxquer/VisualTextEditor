@@ -1,4 +1,6 @@
-﻿namespace ConsoleApplication1
+﻿using System;
+
+namespace ConsoleApplication1
 {
     class Program
     {
@@ -96,7 +98,7 @@
             canvas.Mask('%', 'U');
             canvas.Mask('.', ' ');
 
-            var canvas2 = new StudCanvas(10, 10, 'x');
+            var canvas2 = new StudCanvas(10, 10);
             canvas.Paste(canvas2, 5, 5);
             canvas.Paste(canvas2, 95, 10);
             canvas.Paste(canvas2, 10, 45);
@@ -155,17 +157,18 @@
 
             #region Тест 8 (Линия Ву)
 
-            canvas = new StudCanvas(emptyChar:' ');
+            canvas = new StudCanvas(backChar: ' ');
             line = new StudLine();
             line.DrawWo(canvas, 10, 10, 50, 50);
             line.DrawWo(canvas, 10, 50, 90, 70);
+            line.DrawWo(canvas, 10, 50, 90, 63);
             canvas.Draw("tests/8.txt");
 
             #endregion
 
             #region Тест 9 (Функция Plot)
 
-            canvas = new StudCanvas(emptyChar: ' ');
+            canvas = new StudCanvas();
             DevTools.Plot(canvas, 5, 5, 0.27);
             DevTools.Plot(canvas, 5, 6, 0.12);
             DevTools.Plot(canvas, 5, 7, .57);
@@ -174,5 +177,6 @@
 
             #endregion
         }
+
     }
 }

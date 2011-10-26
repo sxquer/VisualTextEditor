@@ -52,6 +52,7 @@ namespace ConsoleApplication1
             y = (y > height) ? height : y;
         }
 
+        //TODO: Причесать функции
         #region Функции для алгоритма Wo
 
         static public int Ipart(double x)

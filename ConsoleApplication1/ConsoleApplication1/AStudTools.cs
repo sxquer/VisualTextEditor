@@ -2,26 +2,20 @@
 {
     abstract class AStudTools
     {
-        private char _backChar = '#';
-
-        
         /// <summary>
         /// Символ, которым рисуется фигура
         /// </summary>
-        public char BackChar
-        {
-            get { return _backChar; }
-            set { _backChar = value; }
-        }
+        public char BackChar { get; set; }
 
-        private bool _isSolid = true;
         /// <summary>
         /// Закрашивается ли фигура, или рисуется только контур. Для линий при значении true игнорируется точность.
         /// </summary>
-        public bool IsSolid
+        public bool IsSolid { get; set; }
+        
+        protected AStudTools()
         {
-            get { return _isSolid; }
-            set { _isSolid = value; }
+            IsSolid = true;
+            BackChar = '#';
         }
 
         /// <summary>

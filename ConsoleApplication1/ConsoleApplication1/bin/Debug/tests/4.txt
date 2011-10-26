@@ -3,21 +3,21 @@
  #  #                                                                                               
  #  #                                                                                               
   ##                                                                                                
-     xxxxxxxxxx                                                                                     
-     xxxxxxxxxx                                                                                     
-     xxxxxxxxxx                                                                                     
-     xxxxxxxxxx#                                                                                    
-     xxxxxxxxxx#                                                                                    
-     xxxxxxxxxx#                                                                               xxxxx
-     xxxxxxxxxx#                                                                               xxxxx
-     xxxxxxxxxx#                                                                               xxxxx
-     xxxxxxxxxx                                                                                xxxxx
-     xxxxxxxxxx                                                                                xxxxx
-        #####                                             UUUUUUUUUU                           xxxxx
-                                                       UUUU        UUU                         xxxxx
-                                                      UU              UU                       xxxxx
-                                                    UU                  UU                     xxxxx
-                                                   UU                    UU                    xxxxx
+     ..........                                                                                     
+     ..........                                                                                     
+     ..........                                                                                     
+     ..........#                                                                                    
+     ..........#                                                                                    
+     ..........#                                                                               .....
+     ..........#                                                                               .....
+     ..........#                                                                               .....
+     ..........                                                                                .....
+     ..........                                                                                .....
+        #####                                             UUUUUUUUUU                           .....
+                                                       UUUU        UUU                         .....
+                                                      UU              UU                       .....
+                                                    UU                  UU                     .....
+                                                   UU                    UU                    .....
                                                   UU                      UU                        
                                                  U                         UU                       
                                                 UU                          UU                      
@@ -43,8 +43,8 @@
                               UUUUUUUUUUUUUUUUUUUUU                          U     ##               
                              UUUUUUUUUUUUUUUUUUUUUUU                        UU     #                
                            UUUUUUUUUUUUUUUUUUUUUUUUUUU                     UU     ##                
-          xxxxxxxxxx      UUUUUUUUUUUUUUUUUUUUUUUUUUUUU                   UU      #                 
-          xxxxxxxxxx     UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU                 UU      ##                 
-          xxxxxxxxxx    UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU               UU       #                  
-          xxxxxxxxxx    UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU             UU         #                  
-          xxxxxxxxxx   UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU        UUU           #                  
+          ..........      UUUUUUUUUUUUUUUUUUUUUUUUUUUUU                   UU      #                 
+          ..........     UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU                 UU      ##                 
+          ..........    UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU               UU       #                  
+          ..........    UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU             UU         #                  
+          ..........   UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU        UUU           #                  
