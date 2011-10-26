@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConsoleApplication1
+﻿namespace ConsoleApplication1
 {
-    class TStudRectangle: AStudTools
+    class StudRectangle: AStudTools
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="isSolid">Является ли фигура заполненой внутри контура</param>
         /// <param name="backChar">Фоновый символ</param>
-        public TStudRectangle(bool isSolid = true, char backChar = '#')
+        public StudRectangle(bool isSolid = true, char backChar = '#')
         {
-            this.IsSolid = isSolid;
-            this.BackChar = backChar;
+            IsSolid = isSolid;
+            BackChar = backChar;
         }
         
         /// <summary>
@@ -25,7 +21,7 @@ namespace ConsoleApplication1
         /// <param name="y1"></param>
         /// <param name="x2"></param>
         /// <param name="y2"></param>
-        override public void Draw(TStudCanvas canvas, ushort x1, ushort y1, ushort x2, ushort y2)
+        override public void Draw(StudCanvas canvas, ushort x1, ushort y1, ushort x2, ushort y2)
         {
             DevTools.Normalize(ref x1, ref x2);
             DevTools.Normalize(ref y1, ref y2);

@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleApplication1
 {
-    class TStudLine : AStudTools
+    class StudLine : AStudTools
     {
-        private int A, B, C;
-        private int currentY;
-        private float xStep = .1f;
+        private int _a, _b, _c;
+        private int _currentY;
+        private const float XStep = .1f;
 
-        private float accuracy = .15f;
+        private float _accuracy = .15f;
 
         /// <summary>
         /// 
@@ -18,11 +16,11 @@ namespace ConsoleApplication1
         /// <param name="accuracy">Точность. Если расстояние от точки до целого значения y больше, чем точность, точка не отрисуется</param>
         /// <param name="isSolid">Игнорировать ли точность</param>
         /// <param name="backChar">Фоновый символ</param>
-        public TStudLine(float accuracy = .15f, bool isSolid = true, char backChar = '#')
+        public StudLine(float accuracy = .15f, bool isSolid = true, char backChar = '#')
         {
-            this.accuracy = accuracy;
-            this.IsSolid = isSolid;
-            this.BackChar = backChar;
+            _accuracy = accuracy;
+            IsSolid = isSolid;
+            BackChar = backChar;
         }
         
         /// <summary>
@@ -30,11 +28,11 @@ namespace ConsoleApplication1
         /// </summary>
         public float Accuracy
         {
-            get { return accuracy; }
+            get { return _accuracy; }
             set
             {
                 if (value < 0.01) value = 0.01f;
-                accuracy = value;
+                _accuracy = value;
                 //IsSolid = false;
             }
         }
@@ -47,12 +45,12 @@ namespace ConsoleApplication1
         /// <param name="y1"></param>
         /// <param name="x2"></param>
         /// <param name="y2"></param>
-        override public void Draw(TStudCanvas canvas, ushort x1, ushort y1, ushort x2, ushort y2)
+        override public void Draw(StudCanvas canvas, ushort x1, ushort y1, ushort x2, ushort y2)
         {
             #region Подготовка параметров для вычисления
-            A = y1 - y2;
-            B = x2 - x1;
-            C = x1 * y2 - x2 * y1;
+            _a = y1 - y2;
+            _b = x2 - x1;
+            _c = x1 * y2 - x2 * y1;
 
             DevTools.Normalize(ref x1, ref x2);
             DevTools.Normalize(ref y1, ref y2);
@@ -60,17 +58,17 @@ namespace ConsoleApplication1
             DevTools.CheckRightX(ref y2, canvas);
             #endregion
 
-            for (float i = x1; i <= x2; i += xStep)
+            for (float i = x1; i <= x2; i += XStep)
             {
                 for (int j = y1; j <= y2; j++)
                 {
                     //На случай, если x2-x1 == 0
-                    currentY = j;
+                    _currentY = j;
 
-                    if (checkXY(i, j))
+                    if (CheckXY(i, j))
                     {
-                        if (currentY > canvas.GetHeight()) continue;
-                        canvas.Field[(int)Math.Round(i), currentY] = BackChar;
+                        if (_currentY > canvas.GetHeight()) continue;
+                        canvas.Field[(int)Math.Round(i), _currentY] = BackChar;
 
                     }
                 }
@@ -83,55 +81,55 @@ namespace ConsoleApplication1
         /// <param name="x">Точка из области определения функции</param>
         /// <param name="y">Точка из области определения функции</param>
         /// <returns></returns>
-        private bool checkXY(float x, int y)
+        private bool CheckXY(float x, int y)
         {
-            float tempY = -(A * x + C);
-            tempY = (B != 0) ? tempY / B : currentY;
+            float tempY = -(_a * x + _c);
+            tempY = (_b != 0) ? tempY / _b : _currentY;
             float fract = tempY - (int) tempY;
-            if ((fract < accuracy) || (fract > (1 - accuracy)) || IsSolid)
+            if ((fract < _accuracy) || (fract > (1 - _accuracy)) || IsSolid)
             {
-                currentY = (int) Math.Round(tempY);
-                if (currentY == y) return true;
+                _currentY = (int) Math.Round(tempY);
+                if (_currentY == y) return true;
             }
-            currentY = -1;
+            _currentY = -1;
             return false;
         }
 
-        public void DrawWo(TStudCanvas canvas, ushort x1, ushort y1, ushort x2, ushort y2)
+        public void DrawWo(StudCanvas canvas, ushort x1, ushort y1, ushort x2, ushort y2)
         {
             DevTools.Normalize(ref x1, ref x2);
             DevTools.Normalize(ref y1, ref y2);
   
             int dx = x2 - x1;
             int dy = y2 - y1;
-            double gradient = dy / dx;
-  
+            double gradient = (double)dy / dx;
+
             // обработать начальную точку
-            double xend = DevTools.round(x1); 
+            double xend = DevTools.Round(x1); 
             double yend = y1 + gradient * (xend - x1);
            
-            double xgap = 1 - DevTools.fpart(x1 + 0.5);
+            double xgap = 1 - DevTools.Fpart(x1 + 0.5);
             double xpxl1 = xend;  // будет использоваться в основном цикле
-            int ypxl1 = DevTools.ipart(yend);
-            DevTools.plot(canvas, Convert.ToInt32(xpxl1), Convert.ToInt32(ypxl1), Convert.ToDouble(1 - DevTools.fpart(yend) * xgap));
+            int ypxl1 = DevTools.Ipart(yend);
+            DevTools.Plot(canvas, Convert.ToInt32(xpxl1), Convert.ToInt32(ypxl1), Convert.ToDouble(1 - DevTools.Fpart(yend) * xgap));
            
-            DevTools.plot(canvas, Convert.ToInt32(xpxl1), Convert.ToInt32(ypxl1 + 1), Convert.ToDouble(DevTools.fpart(yend) * xgap));
+            DevTools.Plot(canvas, Convert.ToInt32(xpxl1), Convert.ToInt32(ypxl1 + 1), Convert.ToDouble(DevTools.Fpart(yend) * xgap));
             double intery = yend + gradient; // первое y-пересечение для цикла
         
             // обработать конечную точку
-            xend = DevTools.round(x2);
+            xend = DevTools.Round(x2);
             yend = y2 + gradient * (xend - x2);
-            xgap = DevTools.fpart(x2 + 0.5);
+            xgap = DevTools.Fpart(x2 + 0.5);
             double xpxl2 = xend;  // будет использоваться в основном цикле
-            double ypxl2 = DevTools.ipart(yend);
-            DevTools.plot(canvas, Convert.ToInt32(xpxl2), Convert.ToInt32(ypxl2), Convert.ToDouble(1 - DevTools.fpart(yend) * xgap));
-            DevTools.plot(canvas, Convert.ToInt32(xpxl2), Convert.ToInt32(ypxl2 + 1), Convert.ToDouble(DevTools.fpart(yend) * xgap));
+            double ypxl2 = DevTools.Ipart(yend);
+            DevTools.Plot(canvas, Convert.ToInt32(xpxl2), Convert.ToInt32(ypxl2), Convert.ToDouble(1 - DevTools.Fpart(yend) * xgap));
+            DevTools.Plot(canvas, Convert.ToInt32(xpxl2), Convert.ToInt32(ypxl2 + 1), Convert.ToDouble(DevTools.Fpart(yend) * xgap));
      
            // основной цикл
             for (double i = xpxl1 + 1; i < xpxl2; i++)
 		    {
-                DevTools.plot(canvas, (int)i, DevTools.ipart(intery), 1 - DevTools.fpart(intery));
-                DevTools.plot(canvas, (int)i, DevTools.ipart(intery) + 1, DevTools.fpart(intery));
+                DevTools.Plot(canvas, (int)i, DevTools.Ipart(intery), 1 - DevTools.Fpart(intery));
+                DevTools.Plot(canvas, (int)i, DevTools.Ipart(intery) + 1, DevTools.Fpart(intery));
                 intery = intery + gradient;
 		    }
         }

@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 
 namespace ConsoleApplication1
 {
-    class TStudCircle : AStudTools
+    class StudCircle : AStudTools
     {
-        private int currentY1, currentY2 = -1;
+        private int _currentY1, _currentY2 = -1;
         
-        private double x0, y0;
-        private double radius;
+        private double _x0, _y0;
+        private double _radius;
 
-        private float xStep = 0.1f;
-
-        public float Step
-        {
-            get { return xStep; }
-            set { xStep = value; }
-        }
+        public float Step { get; set; }
 
         /// <summary>
         /// 
@@ -26,11 +18,11 @@ namespace ConsoleApplication1
         /// <param name="xStep">Точность прохода по x</param>
         /// <param name="isSolid">Является ли фигура заполненой внутри контура</param>
         /// <param name="backChar">Фоновый символ</param>
-        public TStudCircle(float xStep = 0.1f, bool isSolid = true, char backChar = '#')
+        public StudCircle(float xStep = 0.1f, bool isSolid = true, char backChar = '#')
         {
-            this.xStep = xStep;
-            this.IsSolid = isSolid;
-            this.BackChar = backChar;
+            Step = xStep;
+            IsSolid = isSolid;
+            BackChar = backChar;
         }
         
         /// <summary>
@@ -41,7 +33,7 @@ namespace ConsoleApplication1
         /// <param name="y1"></param>
         /// <param name="x2"></param>
         /// <param name="y2"></param>
-        override public void Draw(TStudCanvas canvas, ushort x1, ushort y1, ushort x2, ushort y2)
+        override public void Draw(StudCanvas canvas, ushort x1, ushort y1, ushort x2, ushort y2)
         {
             #region Подготовка параметров для вычисления
             DevTools.Normalize(ref x1, ref x2);
@@ -52,37 +44,33 @@ namespace ConsoleApplication1
             {
                 x2 = Convert.ToUInt16(x1 + y2 - y1);
             }
-            else
-            {
-                y2 = Convert.ToUInt16(y1 + x2 - x1);
-            }
 
-            radius = (double) (x2 - x1) / 2;
+            _radius = (double) (x2 - x1) / 2;
 
-            x0 = x1 + radius;
-            y0 = y1 + radius;
+            _x0 = x1 + _radius;
+            _y0 = y1 + _radius;
 
             DevTools.CheckRightX(ref x2, canvas);
             #endregion
 
-            for (float i = x1; i <= x2; i += xStep)
+            for (float i = x1; i <= x2; i += Step)
             {
-                checkY(i);
+                CheckY(i);
                 if (IsSolid)
                 {
-                    DevTools.CheckLowY(ref currentY2, canvas);
-                    for (int j = currentY1; j <= currentY2; j++)
+                    DevTools.CheckLowY(ref _currentY2, canvas);
+                    for (int j = _currentY1; j <= _currentY2; j++) 
                     {
                         canvas.Field[(int)Math.Round(i), j] = BackChar;
                     }
                 }
                 else
                 {
-                    if (currentY1 >= canvas.GetHeight()) continue;
-                    canvas.Field[(int) Math.Round(i), currentY1] = BackChar;
+                    if (_currentY1 >= canvas.GetHeight()) continue;
+                    canvas.Field[(int) Math.Round(i), _currentY1] = BackChar;
                         
-                    if (currentY2 >= canvas.GetHeight()) continue;
-                    canvas.Field[(int) Math.Round(i), currentY2] = BackChar;
+                    if (_currentY2 >= canvas.GetHeight()) continue;
+                    canvas.Field[(int) Math.Round(i), _currentY2] = BackChar;
                 }
             }
         }
@@ -95,19 +83,18 @@ namespace ConsoleApplication1
         /// <param name="radius"></param>
         /// <param name="x0"></param>
         /// <param name="y0"></param>
-        public void DrawBresenham(TStudCanvas canvas, int radius, int x0, int y0)
+        public void DrawBresenham(StudCanvas canvas, int radius, int x0, int y0)
         {
             int x = 0;
             int y = radius;
             int delta = 2 - 2 * radius;
-            int error = 0;
             while (y >= 0)
             {
                 canvas.Field[x0 + x, y0 + y] = BackChar;
                 canvas.Field[x0 + x, y0 - y] = BackChar;
                 canvas.Field[x0 - x, y0 + y] = BackChar;
                 canvas.Field[x0 - x, y0 - y] = BackChar;
-                error = 2 * (delta + y) - 1;
+                int error = 2 * (delta + y) - 1;
                 if (delta < 0 && error <= 0)
                 {
                     ++x;
@@ -127,27 +114,26 @@ namespace ConsoleApplication1
             }
 
         }
-        
+
         /// <summary>
         /// Вычисляет y и проверяет, проходит ли точка по точности.
         /// </summary>
         /// <param name="x">Точка из области определения функции</param>
-        /// <param name="y">Переменная, куда попадет вычисленный y, либо -1, если точка не попала в зону точности</param>
         /// <returns></returns>
-        private void checkY(float x)
+        private void CheckY(float x)
         {
-            double tempY1 = y0 - Math.Sqrt(Math.Pow(radius, 2) - Math.Pow(x - x0, 2));
-            double tempY2 = y0 + Math.Sqrt(Math.Pow(radius, 2) - Math.Pow(x - x0, 2));
+            double tempY1 = _y0 - Math.Sqrt(Math.Pow(_radius, 2) - Math.Pow(x - _x0, 2));
+            double tempY2 = _y0 + Math.Sqrt(Math.Pow(_radius, 2) - Math.Pow(x - _x0, 2));
 
             if ((tempY1 - (int) tempY1) == (tempY2 - (int) tempY2))
             {
-                currentY1 = (int) Math.Floor(tempY1);
-                currentY2 = (int) Math.Ceiling(tempY2);
+                _currentY1 = (int) Math.Floor(tempY1);
+                _currentY2 = (int) Math.Ceiling(tempY2);
                 return;
             }
 
-            currentY1 = (int) Math.Round(tempY1);
-            currentY2 = (int) Math.Round(tempY2);
+            _currentY1 = (int) Math.Round(tempY1);
+            _currentY2 = (int) Math.Round(tempY2);
 
             return;
         }

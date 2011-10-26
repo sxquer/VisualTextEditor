@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleApplication1
 {
@@ -13,10 +11,9 @@ namespace ConsoleApplication1
         /// <param name="b"></param>
         static public void Normalize(ref ushort a, ref ushort b)
         {
-            ushort buffer = b;
             if (a > b)
             {
-                buffer = a;
+                ushort buffer = a;
                 a = b;
                 b = buffer;
             }
@@ -27,7 +24,7 @@ namespace ConsoleApplication1
         /// </summary>
         /// <param name="x">Проверяемое значение</param>
         /// <param name="canvas">Ссылка на канву</param>
-        static public void CheckRightX(ref ushort x, TStudCanvas canvas)
+        static public void CheckRightX(ref ushort x, StudCanvas canvas)
         {
             ushort width = Convert.ToUInt16(canvas.GetWidth() - 1);
             x = (x > width) ? width : x;
@@ -38,7 +35,7 @@ namespace ConsoleApplication1
         /// </summary>
         /// <param name="y">Проверяемое значение</param>
         /// <param name="canvas">Ссылка на канву</param>
-        static public void CheckLowY(ref int y, TStudCanvas canvas)
+        static public void CheckLowY(ref int y, StudCanvas canvas)
         {
             int height = canvas.GetHeight() - 1;
             y = (y > canvas.GetHeight()) ? height : y;
@@ -49,7 +46,7 @@ namespace ConsoleApplication1
         /// </summary>
         /// <param name="y">Проверяемое значение</param>
         /// <param name="canvas">Ссылка на канву</param>
-        static public void CheckLowY(ref ushort y, TStudCanvas canvas)
+        static public void CheckLowY(ref ushort y, StudCanvas canvas)
         {
             ushort height = Convert.ToUInt16(canvas.GetHeight() - 1);
             y = (y > height) ? height : y;
@@ -57,49 +54,26 @@ namespace ConsoleApplication1
 
         #region Функции для алгоритма Wo
 
-        static public int ipart(double x)
+        static public int Ipart(double x)
         {
             return (int)x;
         }
 
-        static public double fpart(double x)
+        static public double Fpart(double x)
         {
-            return x - ipart(x);
+            return x - Ipart(x);
         }
         
-        static public int round(double x)
+        static public int Round(double x)
         {
-            return ipart(x + .5f);
+            return Ipart(x + .5f);
         }
 
-        static public void plot(TStudCanvas canvas, int x, int y, double brightness)
+        static public void Plot(StudCanvas canvas, int x, int y, double br)
         {
-            char backChar = '$';
-            switch (getLevel(brightness))
-            {
-                case 0:
-                    backChar = ',';
-                    break;
-                case 1:
-                    backChar = '/';
-                    break;
-                case 2:
-                    backChar = '%';
-                    break;
-                case 3:
-                    backChar = '$';
-                    break;
-            }
-
-            canvas.Field[x, y] = backChar;
-        }
-
-        static private int getLevel(double br)
-        {
-            if (br <= .25f) return 0;
-            if (br <= .5f) return 1;
-            if (br <= .75f) return 2;
-            return 3;
+            char[] backChars = { ',', '/', '%', '$', 'A' };
+            if (br < 0 || br >= 1) br = 0.99;
+            canvas.Field[x, y] = backChars[(int) (br / .20f)];
         }
 
         #endregion

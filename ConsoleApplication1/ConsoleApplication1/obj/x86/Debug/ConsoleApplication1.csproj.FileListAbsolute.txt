@@ -3,3 +3,8 @@ D:\Projects\Zhulpev-edit\ConsoleApplication1\ConsoleApplication1\bin\Debug\Conso
 D:\Projects\Zhulpev-edit\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
 D:\Projects\Zhulpev-edit\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
 D:\Projects\Zhulpev-edit\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+D:\Dropbox\Projects\Zhulpev-edit\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+D:\Dropbox\Projects\Zhulpev-edit\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+D:\Dropbox\Projects\Zhulpev-edit\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+D:\Dropbox\Projects\Zhulpev-edit\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+D:\Dropbox\Projects\Zhulpev-edit\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache

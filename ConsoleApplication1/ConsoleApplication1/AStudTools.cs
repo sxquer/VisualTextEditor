@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConsoleApplication1
+﻿namespace ConsoleApplication1
 {
     abstract class AStudTools
     {
-        private char backChar = '#';
+        private char _backChar = '#';
 
         
         /// <summary>
@@ -14,18 +10,18 @@ namespace ConsoleApplication1
         /// </summary>
         public char BackChar
         {
-            get { return backChar; }
-            set { backChar = value; }
+            get { return _backChar; }
+            set { _backChar = value; }
         }
 
-        private bool isSolid = true;
+        private bool _isSolid = true;
         /// <summary>
         /// Закрашивается ли фигура, или рисуется только контур. Для линий при значении true игнорируется точность.
         /// </summary>
         public bool IsSolid
         {
-            get { return isSolid; }
-            set { isSolid = value; }
+            get { return _isSolid; }
+            set { _isSolid = value; }
         }
 
         /// <summary>
@@ -36,7 +32,7 @@ namespace ConsoleApplication1
         /// <param name="y1"></param>
         /// <param name="x2"></param>
         /// <param name="y2"></param>
-        abstract public void Draw(TStudCanvas canvas, ushort x1, ushort y1, ushort x2, ushort y2);
+        abstract public void Draw(StudCanvas canvas, ushort x1, ushort y1, ushort x2, ushort y2);
         
     }
 }

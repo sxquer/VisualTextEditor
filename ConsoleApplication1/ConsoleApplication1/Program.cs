@@ -1,170 +1,176 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConsoleApplication1
+﻿namespace ConsoleApplication1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var Canvas = new TStudCanvas();
-            var Rec = new TStudRectangle();
-            var Line = new TStudLine();
-            var Circle = new TStudCircle();
+            var rec = new StudRectangle();
+            var line = new StudLine();
+            var circle = new StudCircle();
 
             #region Тест 1 (Прямоугольники)
 
-            Canvas = new TStudCanvas(15, 15);
+            var canvas = new StudCanvas(15, 15);
 
-            Rec.IsSolid = false;
-            Rec.Draw(Canvas, 8, 1, 1, 8);
+            rec.IsSolid = false;
+            rec.Draw(canvas, 8, 1, 1, 8);
 
-            Rec.IsSolid = true;
-            Rec.BackChar = '*';
-            Rec.Draw(Canvas, 3, 3, 6, 6);
+            rec.IsSolid = true;
+            rec.BackChar = '*';
+            rec.Draw(canvas, 3, 3, 6, 6);
 
-            Rec.BackChar = ' ';
-            Rec.Draw(Canvas, 10, 10, 10, 3);
+            rec.BackChar = ' ';
+            rec.Draw(canvas, 10, 10, 10, 3);
 
-            Rec.BackChar = 'S';
-            Rec.Draw(Canvas, 12, 12, 20, 20);
+            rec.BackChar = 'S';
+            rec.Draw(canvas, 12, 12, 20, 20);
 
-            Rec.Draw(Canvas, 4000, 3000, 2000, 1000);
+            rec.Draw(canvas, 4000, 3000, 2000, 1000);
 
-            Canvas.Draw("tests/1.txt");
+            canvas.Draw("tests/1.txt");
 
             #endregion
 
             #region Тест 2 (Линии)
 
-            Canvas = new TStudCanvas(40, 40);
+            canvas = new StudCanvas(40, 40);
 
-            Line.IsSolid = true;
-            Line.Accuracy = 0.1f;
-            Line.Draw(Canvas, 5, 5, 20, 15);
+            line.IsSolid = true;
+            line.Accuracy = 0.1f;
+            line.Draw(canvas, 5, 5, 20, 15);
 
-            Line.IsSolid = false;
-            Line.Draw(Canvas, 1, 1, 40, 4);
+            line.IsSolid = false;
+            line.Draw(canvas, 1, 1, 40, 4);
 
-            Line.Draw(Canvas, 5, 10, 20, 20);
+            line.Draw(canvas, 5, 10, 20, 20);
 
-            Line.Accuracy = 0.1f;
-            Line.Draw(Canvas, 5, 21, 20, 15);
+            line.Accuracy = 0.1f;
+            line.Draw(canvas, 5, 21, 20, 15);
 
-            Line.BackChar = '@';
-            Line.Draw(Canvas, 1000, 1000, 2000, 2000);
+            line.BackChar = '@';
+            line.Draw(canvas, 1000, 1000, 2000, 2000);
 
-            Line.Draw(Canvas, 20, 20, 50, 20);
+            line.Draw(canvas, 20, 20, 50, 20);
 
-            Line.Draw(Canvas, 20, 20, 20, 50);
+            line.Draw(canvas, 20, 20, 20, 50);
 
-            Line.Draw(Canvas, 15, 20, 16, 30);
+            line.Draw(canvas, 15, 20, 16, 30);
 
-            Canvas.Draw("tests/2.txt");
+            canvas.Draw("tests/2.txt");
 
             #endregion
 
             #region Тест 3 (Круги)
 
-            Canvas = new TStudCanvas(height: 50);
-            Circle.IsSolid = true;
-            Circle.Draw(Canvas, 5, 5, 20, 15);
+            canvas = new StudCanvas(height: 50);
+            circle.IsSolid = true;
+            circle.Draw(canvas, 5, 5, 20, 15);
 
-            Circle.IsSolid = false;
-            Circle.Step = 1;
-            Circle.Draw(Canvas, 1, 1, 40, 4);
+            circle.IsSolid = false;
+            circle.Step = 1;
+            circle.Draw(canvas, 1, 1, 40, 4);
 
-            Circle.Step = .1f;
-            Circle.Draw(Canvas, 80, 30, 130, 80);
+            circle.Step = .1f;
+            circle.Draw(canvas, 80, 30, 130, 80);
 
-            Circle.BackChar = '%';
-            Circle.IsSolid = true;
-            Circle.Draw(Canvas, 20, 40, 60, 5000);
+            circle.BackChar = '%';
+            circle.IsSolid = true;
+            circle.Draw(canvas, 20, 40, 60, 5000);
 
-            Circle.Draw(Canvas, 50000, 60000, 1000, 2000);
+            circle.Draw(canvas, 50000, 60000, 1000, 2000);
 
-            Circle.Step = .3f;
-            Circle.IsSolid = false;
-            Circle.Draw(Canvas, 45, 15, 80, 50);
+            circle.Step = .3f;
+            circle.IsSolid = false;
+            circle.Draw(canvas, 45, 15, 80, 50);
 
-            Circle.Step = .1f;
-            Circle.IsSolid = true;
-            Circle.Draw(Canvas, 55, 25, 70, 40);
+            circle.Step = .1f;
+            circle.IsSolid = true;
+            circle.Draw(canvas, 55, 25, 70, 40);
 
-            Canvas.Draw("tests/3.txt");
+            canvas.Draw("tests/3.txt");
 
             #endregion
 
             #region Тест 4 (Canvas.Mask && Canavs.Paste)
 
-            Canvas.Mask('%', 'U');
-            Canvas.Mask('.', ' ');
+            canvas.Mask('%', 'U');
+            canvas.Mask('.', ' ');
 
-            var Canvas2 = new TStudCanvas(10, 10, 'x');
-            Canvas.Paste(Canvas2, 5, 5);
-            Canvas.Paste(Canvas2, 95, 10);
-            Canvas.Paste(Canvas2, 10, 45);
-            Canvas.Paste(Canvas2, 1000, 4500);
+            var canvas2 = new StudCanvas(10, 10, 'x');
+            canvas.Paste(canvas2, 5, 5);
+            canvas.Paste(canvas2, 95, 10);
+            canvas.Paste(canvas2, 10, 45);
+            canvas.Paste(canvas2, 1000, 4500);
 
-            Canvas.Draw("tests/4.txt");
+            canvas.Draw("tests/4.txt");
 
             #endregion
 
             #region Тест 5 (Смайлик)
 
-            Canvas = new TStudCanvas();
-            Circle.Draw(Canvas, 5, 5, 95, 95);
+            canvas = new StudCanvas();
+            circle.Draw(canvas, 5, 5, 95, 95);
 
-            Circle.IsSolid = false;
-            Circle.BackChar = '$';
-            Circle.Step = .05f;
-            Circle.Draw(Canvas, 4, 4, 96, 96);
+            circle.IsSolid = false;
+            circle.BackChar = '$';
+            circle.Step = .05f;
+            circle.Draw(canvas, 4, 4, 96, 96);
 
-            Circle = new TStudCircle(.5f, backChar: '*');
-            Circle.Draw(Canvas, 25, 25, 45, 45);
-            Circle.Draw(Canvas, 55, 25, 75, 45);
+            circle = new StudCircle(.5f, backChar: '*');
+            circle.Draw(canvas, 25, 25, 45, 45);
+            circle.Draw(canvas, 55, 25, 75, 45);
 
-            Circle = new TStudCircle(.1f, backChar: '%');
-            Circle.Draw(Canvas, 27, 35, 35, 45);
-            Circle.Draw(Canvas, 57, 35, 65, 45);
+            circle = new StudCircle(.1f, backChar: '%');
+            circle.Draw(canvas, 27, 35, 35, 45);
+            circle.Draw(canvas, 57, 35, 65, 45);
 
-            Circle = new TStudCircle(.1f, backChar: '@');
-            Circle.Draw(Canvas, 35, 50, 65, 80);
+            circle = new StudCircle(.1f, backChar: '@');
+            circle.Draw(canvas, 35, 50, 65, 80);
 
-            Canvas.Draw("tests/5.txt");
+            canvas.Draw("tests/5.txt");
 
             #endregion
 
             #region Тест 6 (Линии)
 
-            Canvas = new TStudCanvas();
-            Line = new TStudLine(0.51f, false);
-            Line.Draw(Canvas, 10, 10, 50, 50);
+            canvas = new StudCanvas();
+            line = new StudLine(0.51f, false);
+            line.Draw(canvas, 10, 10, 50, 50);
 
-            Line.Draw(Canvas, 10, 50, 90, 70);
+            line.Draw(canvas, 10, 50, 90, 70);
 
-            Canvas.Draw("tests/6.txt");
+            canvas.Draw("tests/6.txt");
 
             #endregion
 
             #region Тест 7 (Круги Брезенхейма)
 
-            Canvas = new TStudCanvas();
-            Circle = new TStudCircle();
-            Circle.DrawBresenham(Canvas, 10, 30, 30);
+            canvas = new StudCanvas();
+            circle = new StudCircle();
+            circle.DrawBresenham(canvas, 10, 30, 30);
             //Circle.DrawBresenham(Canvas, 50, 80, 80);
-            Canvas.Draw("tests/7.txt");
+            canvas.Draw("tests/7.txt");
 
             #endregion
 
             #region Тест 8 (Линия Ву)
 
-            Canvas = new TStudCanvas(emptyChar:' ');
-            Line = new TStudLine();
-            Line.DrawWo(Canvas, 10, 10, 50, 50);
-            Line.DrawWo(Canvas, 10, 50, 90, 70);
-            Canvas.Draw("tests/8.txt");
+            canvas = new StudCanvas(emptyChar:' ');
+            line = new StudLine();
+            line.DrawWo(canvas, 10, 10, 50, 50);
+            line.DrawWo(canvas, 10, 50, 90, 70);
+            canvas.Draw("tests/8.txt");
+
+            #endregion
+
+            #region Тест 9 (Функция Plot)
+
+            canvas = new StudCanvas(emptyChar: ' ');
+            DevTools.Plot(canvas, 5, 5, 0.27);
+            DevTools.Plot(canvas, 5, 6, 0.12);
+            DevTools.Plot(canvas, 5, 7, .57);
+            DevTools.Plot(canvas, 5, 8, .81);
+            canvas.Draw("tests/9.txt");
 
             #endregion
         }

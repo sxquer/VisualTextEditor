@@ -1,0 +1,7 @@
+D:\Dropbox\Projects\Zhulpev-edit\ConsoleApplication1\TestProject1\bin\Debug\TestProject1.dll
+D:\Dropbox\Projects\Zhulpev-edit\ConsoleApplication1\TestProject1\bin\Debug\TestProject1.pdb
+D:\Dropbox\Projects\Zhulpev-edit\ConsoleApplication1\TestProject1\bin\Debug\ConsoleApplication1.exe
+D:\Dropbox\Projects\Zhulpev-edit\ConsoleApplication1\TestProject1\bin\Debug\ConsoleApplication1.pdb
+D:\Dropbox\Projects\Zhulpev-edit\ConsoleApplication1\TestProject1\obj\Debug\ResolveAssemblyReference.cache
+D:\Dropbox\Projects\Zhulpev-edit\ConsoleApplication1\TestProject1\obj\Debug\TestProject1.dll
+D:\Dropbox\Projects\Zhulpev-edit\ConsoleApplication1\TestProject1\obj\Debug\TestProject1.pdb
